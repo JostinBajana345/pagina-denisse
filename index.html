@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Feliz Cumpleaños, Oscar</title>
+    <style>
+      body {
+        font-family: "Georgia", serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: linear-gradient(to bottom, #00bfff, #ffffff);
+        color: #000;
+        text-align: center;
+        font-style: italic;
+        overflow: hidden;
+      }
+      .container {
+        display: none;
+      }
+      button {
+        background-color: #4caf50;
+        color: white;
+        padding: 15px 32px;
+        font-size: 18px;
+        margin-top: 20px;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+      .confetti {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        overflow: hidden;
+      }
+      .confetti-piece {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background: #ff0;
+        opacity: 0.8;
+        border-radius: 50%;
+        animation: fall 4s linear infinite;
+      }
+      @keyframes fall {
+        0% {
+          transform: translateY(-100vh) rotate(0deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(100vh) rotate(720deg);
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="page1" class="container">
+      <h1>¡Feliz cumpleaños, Oscar!</h1>
+      <button onclick="goToPage(2)">Siguiente</button>
+    </div>
+
+    <div id="page2" class="container">
+      <h1>
+        Denisse tiene algo para decirte, ¿quieres saber qué te quiere decir
+        Denisse?
+      </h1>
+      <button onclick="goToPage(3)">Sí</button>
+      <button onclick="goToPage(8)">No</button>
+    </div>
+
+    <div id="page3" class="container">
+      <h1>
+        Denisse quiere invitarte a desayunar en un lugar muy bonito que seguro
+        te encantará...
+      </h1>
+      <button onclick="goToPage(4)">Siguiente</button>
+    </div>
+
+    <div id="page4" class="container">
+      <h1>El desayuno es buffet y con vista al mar</h1>
+      <button onclick="goToPage(5)">Siguiente</button>
+    </div>
+
+    <div id="page5" class="container">
+      <h1>¿Aceptas la invitación?</h1>
+      <button onclick="goToPage(6)">Sí</button>
+      <button onclick="goToPage(9)">No</button>
+    </div>
+
+    <div id="page6" class="container">
+      <h1>Haz click abajo</h1>
+      <button
+        onclick="window.location.href='https://www.canva.com/design/DAGcUj8yKW4/iG7HOKR60_boOinnHzvK4A/view?utm_content=DAGcUj8yKW4&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h2a4b358157'"
+      >
+        Aquí
+      </button>
+    </div>
+
+    <div id="page7" class="container">
+      <h1>Haz click abajo</h1>
+    </div>
+
+    <div id="page8" class="container">
+      <h1>¡Qué lastima, Denisse estaba ansiosa por invitarte!</h1>
+    </div>
+
+    <div id="page9" class="container">
+      <h1>¿Estás seguro? Piénsalo bien</h1>
+      <button onclick="goToPage(5)">Sí, lo pienso mejor</button>
+      <button onclick="goToPage(7)">No, ya estoy decidido</button>
+    </div>
+
+    <div class="confetti" id="confetti"></div>
+
+    <script>
+      document.getElementById("page1").style.display = "block";
+
+      function goToPage(pageNumber) {
+        let pages = document.querySelectorAll(".container");
+        pages.forEach((page) => (page.style.display = "none"));
+        document.getElementById("page" + pageNumber).style.display = "block";
+      }
+
+      function createConfetti() {
+        const confettiContainer = document.getElementById("confetti");
+        for (let i = 0; i < 100; i++) {
+          const confettiPiece = document.createElement("div");
+          confettiPiece.classList.add("confetti-piece");
+          confettiPiece.style.left = Math.random() * 100 + "vw";
+          confettiPiece.style.background = `hsl(${
+            Math.random() * 360
+          }, 100%, 70%)`;
+          confettiPiece.style.animationDelay = Math.random() * 4 + "s";
+          confettiContainer.appendChild(confettiPiece);
+        }
+      }
+
+      createConfetti();
+    </script>
+  </body>
+</html>
